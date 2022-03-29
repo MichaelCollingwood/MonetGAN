@@ -1,6 +1,6 @@
 monets/
 non-monets/
 
-*.ipynb
+*.ipynb_checkpoints
 
 .DS_Store
