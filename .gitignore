@@ -2,3 +2,5 @@ monets/
 non-monets/
 
 *.ipynb
+
+.DS_Store
