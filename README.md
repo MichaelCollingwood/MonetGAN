@@ -8,7 +8,7 @@ Based on a DCGAN neural network (Ian Goodfellow, 2014)
 
 _TODO_: 
 - Expand to a stylised GAN ([BlendGAN](https://arxiv.org/pdf/2110.11728.pdf))
-- _TODO_: Investigate Growing Neural Network (GradMax, NeST)
+- Investigate Growing Neural Network (GradMax, NeST)
 
 ## **Training**
 
