@@ -131,12 +131,31 @@ class Monet:
                 self.G.save(epoch, ckpt_dir)
                 self.D.save(epoch, ckpt_dir)
 
+    def printTraining(self):
+        logging.info("Print training")
+
+        import matplotlib.pyplot as plt
+
+        plt.figure(figsize=(10, 5))
+        plt.title("Generator and Discriminator Loss During Training")
+        plt.plot(self.G.losses, label="G")
+        plt.plot(self.D.losses, label="D")
+        plt.xlabel("iterations")
+        plt.ylabel("Loss")
+        plt.legend()
+        plt.show()
+
     def paint(self):
         logging.info("Paint random noise")
 
         import torch
+        import numpy as np
+        import matplotlib.pyplot as plt
 
-        noise = torch.randn(64, self.hyper_params["nz"], 1, 1, device=self.hyper_params["device"])
-        image = self.G.net(noise)
+        noise = torch.randn(1, self.hyper_params["nz"], 1, 1, device=self.hyper_params["device"])
+        image = self.G.net(noise).detach().numpy()[0]
 
-        return image
+        plt.axis("off")
+        plt.title("Fake Images")
+        plt.imshow(np.transpose(image))
+        plt.show()
