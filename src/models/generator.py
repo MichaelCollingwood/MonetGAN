@@ -2,13 +2,11 @@ from torch import nn
 
 
 class Generator(nn.Module):
-    def __init__(self, gpu_count, nz, ngf, nc):
+    def __init__(self, params):
         super(Generator, self).__init__()
-        self.gpu_count = gpu_count
+        self.params = params
 
-        self.nz = nz  # Size of z latent vector (i.e. size of generator input)
-        self.ngf = ngf  # Size of feature maps in generator
-        self.nc = nc  # Number of channels in the training images
+        nz, ngf, nc = [params[k] for k in ["nz", "ngf", "nc"]]
 
         self.main = nn.Sequential(
             # input is Z, going into a convolution

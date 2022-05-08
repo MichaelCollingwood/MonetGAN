@@ -2,8 +2,10 @@ from PlotNeuralNet.pycore.tikzeng import *
 
 
 class Plotter:
-    def __init__(self, model):
-        self.architecture = self.getArchitecture(model)
+    def __init__(self, model, input_shape):
+        from torchsummary import summary
+
+        self.architecture = self.getArchitecture(summary(model, input_shape))
 
     @staticmethod
     def getArchitecture(model):

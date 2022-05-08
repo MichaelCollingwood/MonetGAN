@@ -1,10 +1,9 @@
 class DatasetWrapper:
     def __init__(self, image_folder):
+        from torchvision.transforms import Resize, CenterCrop, ToTensor, Normalize
+
         self.image_folder = image_folder
         self.image_size = 64
-
-        # Default for transformations
-        from torchvision.transforms import Resize, CenterCrop, ToTensor, Normalize
 
         self.transforms = [
             Resize(self.image_size),
@@ -13,15 +12,14 @@ class DatasetWrapper:
             Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ]
 
-    @classmethod
-    def dataLoader(cls, config: dict):
+    def dataloader(self, config: dict):
         from torch.utils.data import DataLoader
 
         return DataLoader(
-            dataset=cls.dataset(),
+            dataset=self.dataset(),
             batch_size=config["batch_size"],
             shuffle=config["shuffle"],
-            num_workers=config["num_workers"]
+            num_workers=config["workers"]
         )
 
     def dataset(self):
